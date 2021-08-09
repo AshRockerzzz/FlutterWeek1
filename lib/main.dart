@@ -1,6 +1,13 @@
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:english_words/english_words.dart';
-void main() => runApp(MyApp());
+void main() => runApp(DevicePreview(
+    enabled: !kReleaseMode,//!kReleaseMode,
+    builder: (context) => MyApp(), // Wrap your app
+  ),
+  );
 
 class MyApp extends StatelessWidget {
   @override
@@ -19,12 +26,16 @@ class MyApp extends StatelessWidget {
         ),
       ),
     );#3*/
-    return MaterialApp(
+    return MaterialApp(/*
+
       title: 'Startup Name Generator',
       theme: ThemeData(          // Add the 3 lines from here... 
         primaryColor: Colors.white,
       ), 
-      home: RandomWords(),
+      home: RandomWords(),*/
+      locale: DevicePreview.locale(context), // Add the locale here
+      builder: DevicePreview.appBuilder, // Add the builder here
+      home: RandomWords(),  
     );
 
   }
